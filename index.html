@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Ceasefire Agreement</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --bg-color: #1a1a1a;
+            --paper-color: #f4f1ea;
+            --text-color: #2c2c2c;
+            --accent-color: #8b0000; /* Deep Red */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Lora', serif;
+        }
+
+        .document-container {
+            background-color: var(--paper-color);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            transform: rotate(-1deg); /* Slight tilt for realism */
+            border: 1px solid #dcd9d0;
+        }
+
+        /* Paper Texture Effect */
+        .document-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 3px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 10px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(15deg);
+            opacity: 0.8;
+            mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png"); /* Grunge texture for stamp */
+            -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+
+        .meta {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .section-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-top: 25px;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        p, li {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #000;
+        }
+
+        .signature-section {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .signature-line {
+            width: 80%;
+            height: 2px;
+            background-color: #000;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background-color: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .signed-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #000080; /* Blue ink color */
+            transform: rotate(-5deg);
+            display: none; /* Hidden initially */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        <div class="stamp">Top Secret</div>
+        
+        <h1>Official Ceasefire Agreement</h1>
+        
+        <div class="meta">
+            Date: February 14, 2026 <br>
+            Ref: V-DAY-PROTOCOL-2026
+        </div>
+
+        <div class="section-title">Between:</div>
+        <p>
+            <strong>The Boy Who Refuses To Move On</strong> <br>
+            & <br>
+            <strong>The Girl Who Is "Just A Girl"</strong>
+        </p>
+
+        <div class="section-title">Preamble:</div>
+        <p>
+            We acknowledge that the world is messy, the timing is wrong, and the odds are stacked against us. However, both parties agree that for exactly 24 hours, logic is overruled by the heart.
+        </p>
+
+        <div class="section-title">Terms of the Armistice:</div>
+        <ul>
+            <li><span class="highlight">Suspension of Reality:</span> From 12:00 AM to 11:59 PM, all mentions of "Parents," "Future Plans," and "Rational Thinking" are strictly prohibited.</li>
+            <li><span class="highlight">The Bubble Clause:</span> We agree to exist in a temporary bubble where we are not "Exes" or "Friends," but simply "Us."</li>
+            <li><span class="highlight">Immunity:</span> Both parties are granted immunity from the sadness of the situation until the clock strikes midnight.</li>
+        </ul>
+
+        <div class="section-title">Objective:</div>
+        <p>To steal one perfect day from a universe that is trying to keep us apart.</p>
+
+        <div class="signature-section">
+            <p style="margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; color: #666;">Acceptance of Terms:</p>
+            
+            <button id="signBtn" onclick="signTreaty()">Sign Treaty</button>
+            
+            <div id="signature" class="signed-text">Amirtha</div>
+            
+            <div class="signature-line"></div>
+            <p style="font-size: 0.7rem; color: #888;">(Signature of the Party of the Second Part)</p>
+        </div>
+    </div>
+
+    <script>
+        function signTreaty() {
+            // Hide button, show signature
+            document.getElementById('signBtn').style.display = 'none';
+            var signature = document.getElementById('signature');
+            signature.style.display = 'block';
+
+            // Trigger Confetti
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInOut(min, max) {
+            return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+            var timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            var particleCount = 50 * (timeLeft / duration);
+            // since particles fall down, start a bit higher than random
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.1, 0.3), y: Math.random() - 0.2 } }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            // Optional: Alert after a delay
+            setTimeout(() => {
+                alert("Protocol Accepted. See you on the 14th.");
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
